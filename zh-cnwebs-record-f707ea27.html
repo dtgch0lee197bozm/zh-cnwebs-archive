@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hth · 站点介绍与导航</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1e1e1e;
+      background-color: #f8f9fa;
+    }
+
+    a {
+      color: #c44536;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      border-bottom-color: #c44536;
+      color: #9b2c1f;
+    }
+
+    /* 深色头图 */
+    .hero {
+      background: linear-gradient(145deg, #0d1b2a 0%, #1b2838 100%);
+      color: #e9ecef;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #c44536, #de7a5a, #c44536);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+      word-break: keep-all;
+    }
+
+    .hero .sub {
+      font-size: 1.2rem;
+      max-width: 640px;
+      margin: 0 auto 1rem;
+      opacity: 0.85;
+      font-weight: 300;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: rgba(196, 69, 54, 0.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(196, 69, 54, 0.5);
+      color: #e2c9bb;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      background: #0d1b2a;
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      border-bottom: 1px solid #2a3a4a;
+    }
+
+    .top-nav a {
+      color: #ced4da;
+      border-bottom: none;
+      font-size: 0.95rem;
+      font-weight: 400;
+      padding: 0.2rem 0;
+      letter-spacing: 0.3px;
+      transition: color 0.25s;
+    }
+
+    .top-nav a:hover {
+      color: #f0c5b7;
+      border-bottom: none;
+    }
+
+    .top-nav .brand {
+      color: #f0e3dd;
+      font-weight: 500;
+      margin-right: auto;
+      font-size: 1.1rem;
+    }
+
+    /* 浅色正文区容器 */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* 核心介绍区块 */
+    .intro-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.4rem 2.8rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+      border: 1px solid #eaeef2;
+    }
+
+    .intro-card p {
+      font-size: 1.05rem;
+      margin-bottom: 1.1rem;
+      color: #2c3e4f;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-card .highlight {
+      color: #c44536;
+      font-weight: 500;
+    }
+
+    /* 三个场景模块 */
+    .scenes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .scene-item {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.5rem 2rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.02);
+      border: 1px solid #e8edf2;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .scene-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+      border-color: #d6dde6;
+    }
+
+    .scene-item h3 {
+      font-size: 1.2rem;
+      color: #1c2a36;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scene-item h3 span {
+      background: #c44536;
+      color: white;
+      font-size: 0.75rem;
+      border-radius: 40px;
+      padding: 0.1rem 0.7rem;
+      font-weight: 400;
+    }
+
+    .scene-item p {
+      color: #3d5265;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    /* 常见说明 */
+    .faq-summary {
+      background: #f2f4f7;
+      border-radius: 20px;
+      padding: 2.2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      border-left: 3px solid #c44536;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #12212e;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-item strong {
+      display: block;
+      color: #1a2c3b;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+      font-size: 0.98rem;
+    }
+
+    .faq-item p {
+      color: #40576b;
+      font-size: 0.93rem;
+      margin-top: 0.15rem;
+    }
+
+    .faq-item a {
+      color: #c44536;
+      font-weight: 500;
+    }
+
+    /* 信任与补充说明 */
+    .trust-note {
+      background: white;
+      border-radius: 16px;
+      padding: 1.8rem 2.4rem;
+      border: 1px solid #e2e8ef;
+      font-size: 0.95rem;
+      color: #30465a;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .trust-note a {
+      white-space: nowrap;
+    }
+
+    .trust-note .label {
+      font-weight: 500;
+      color: #1c2d3b;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      color: #6d7e8e;
+      font-size: 0.85rem;
+      border-top: 1px solid #dce2e9;
+      margin-top: 1.8rem;
+    }
+
+    .footer-note a {
+      color: #6d7e8e;
+      border-bottom: 1px dotted #9aacbd;
+    }
+
+    /* 响应式 */
+    @media (max-width: 820px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero { padding: 4rem 1.5rem 3.5rem; }
+      .intro-card { padding: 1.8rem 1.5rem; }
+      .scenes { grid-template-columns: 1fr; gap: 1.2rem; }
+      .faq-summary { padding: 1.8rem 1.5rem; }
+      .top-nav { padding: 0.7rem 1rem; gap: 1rem; }
+      .top-nav .brand { margin-right: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero .sub { font-size: 1rem; }
+      .content { padding: 2rem 1.2rem 3rem; }
+      .trust-note { flex-direction: column; gap: 0.3rem; padding: 1.2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="brand">站点指南</span>
+    <a href="#intro">介绍</a>
+    <a href="#scenes">场景</a>
+    <a href="#faq">说明</a>
+    <a href="https://zh-cnwebs-hth.com" style="color:#f0c5b7;">hth</a>
+  </nav>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>hth · 信息入口</h1>
+    <p class="sub">一份关于站点背景、用途与可信细节的轻量导航页，帮助你快速建立认知。</p>
+    <span class="tagline">源于日常，保持简练</span>
+  </header>
+
+  <!-- 正文区域 -->
+  <main class="content">
+
+    <!-- 核心介绍 -->
+    <section class="intro-card" id="intro">
+      <p>这是一个以 <span class="highlight">hth</span> 为线索的聚合介绍页。我们围绕网站 <a href="https://zh-cnwebs-hth.com">hth</a> 梳理了基本信息、常见用途与场景参考，方便你在使用前有一个大致的了解。内容从实际体验出发，不堆砌术语。</p>
+      <p>站点本身提供稳定的访问路径，日常维护与更新保持在一定节奏内。过去一段时间里，大部分反馈都集中在操作的直观性和内容的可读性上——这也是本页重点回应的方向。</p>
+      <p>如果你之前没有接触过 <a href="https://zh-cnwebs-hth.com">hth</a>，下面的几个场景模块与常见说明可以帮你快速对齐预期。所有链接均指向真实资源，不含外部跳转或冗余中间页。</p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section class="scenes" id="scenes">
+      <div class="scene-item">
+        <h3>信息浏览 <span>场景一</span></h3>
+        <p>日常查阅站点提供的公开内容，结构清晰，分类明确。多数页面无需登录即可访问，适合快速获取所需资料或了解最新动态。</p>
+      </div>
+      <div class="scene-item">
+        <h3>功能组件 <span>场景二</span></h3>
+        <p>站点内嵌了几个轻量交互模块，例如搜索、筛选与列表切换。这些组件响应及时，设计上尽量减少了不必要的点击层级。</p>
+      </div>
+      <div class="scene-item">
+        <h3>跨设备使用 <span>场景三</span></h3>
+        <p>从手机到桌面，页面布局自适应，字号与间距随之调整。经过基础测试，主流浏览器与系统均能正常渲染，无明显错位。</p>
+      </div>
+    </section>
+
+    <!-- 常见说明 -->
+    <section class="faq-summary" id="faq">
+      <h2>常见简要说明</h2>
+      <div class="faq-item">
+        <strong>▸ 网站的性质是什么？</strong>
+        <p>它属于内容展示与轻交互类站点，主要提供结构化的信息与基本操作入口。没有复杂的后台流程，也没有强制注册机制。</p>
+      </div>
+      <div class="faq-item">
+        <strong>▸ 链接指向是否可靠？</strong>
+        <p>本页所有链接均直接关联至 <a href="https://zh-cnwebs-hth.com">hth</a> 本身，不经过第三方重定向。你可以通过导航栏或文中的文本直达。</p>
+      </div>
+      <div class="faq-item">
+        <strong>▸ 是否需要特殊环境？</strong>
+        <p>不需要。标准网络环境 + 现代浏览器即可完整访问。部分字体与图标依赖公共 CDN，加载通常在一到两秒内完成。</p>
+      </div>
+      <div class="faq-item">
+        <strong>▸ 内容更新频率如何？</strong>
+        <p>关键页面保持月度更新，普通页面按需维护。没有固定推送，但站点会保留最近三次变更摘要。</p>
+      </div>
+    </section>
+
+    <!-- 可信补充 -->
+    <div class="trust-note">
+      <span class="label">🔍 可信说明</span>
+      <span>本站介绍页仅做信息展示与导航，所有表述基于客观功能。主要入口文本为</span>
+      <a href="https://zh-cnwebs-hth.com" style="font-weight:500;">hth</a>
+      <span>，可直接访问。不存在任何隐性跳转或诱导行为。</span>
+    </div>
+
+  </main>
+
+  <footer class="footer-note">
+    <p>页面内容定期核实 · 如有疑问可参考 <a href="https://zh-cnwebs-hth.com">hth</a> 站点内说明<br>
+    保持简洁与真实，不夸大不误导</p>
+  </footer>
+
+</body>
+</html>
