@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华体会 · 简明知识库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #fafaf9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1c1917;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* 标题层级 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+            border-left: 5px solid #b45309;
+            padding-left: 1.2rem;
+            color: #292524;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 2.8rem 0 1rem 0;
+            color: #44403c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: "▹";
+            color: #b45309;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin: 1.4rem 0 0.4rem 0;
+            color: #57534e;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            color: #3f3f46;
+        }
+
+        a {
+            color: #b45309;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, background 0.15s;
+            padding: 0.05rem 0.1rem;
+        }
+
+        a:hover {
+            border-bottom-color: #b45309;
+            background: #fef3c7;
+        }
+
+        /* 卡片式目录区 */
+        .index-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin: 1.8rem 0 2.2rem 0;
+            border-top: 1px solid #e7e5e4;
+            padding-top: 1.8rem;
+        }
+
+        .index-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            border: 1px solid #e7e5e4;
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+
+        .index-item:hover {
+            box-shadow: 0 8px 16px -8px rgba(0,0,0,0.08);
+            background: #fefcf7;
+        }
+
+        .index-item strong {
+            display: inline-block;
+            font-weight: 500;
+            color: #292524;
+            min-width: 5.5rem;
+        }
+
+        .index-item .tag {
+            display: inline-block;
+            background: #f5f0eb;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            color: #57534e;
+            margin-left: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* 说明区 & 提示区 */
+        .notice-box {
+            background: #fefce8;
+            border-left: 4px solid #b45309;
+            padding: 1rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        .info-box {
+            background: #f0f7f4;
+            border-left: 4px solid #2b7a62;
+            padding: 1rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+
+        .faq-mini {
+            background: #fff;
+            border: 1px solid #dedbd8;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #f0edea;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #292524;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini summary::before {
+            content: "❓";
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary:hover {
+            color: #b45309;
+        }
+
+        .faq-mini p {
+            margin: 0.6rem 0 0.2rem 1.8rem;
+            font-size: 0.95rem;
+            color: #57534e;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 500px) {
+            body { padding: 1.2rem 0.8rem; }
+            h1 { font-size: 1.8rem; padding-left: 1rem; }
+            .index-item { padding: 1rem 1.1rem; }
+            .notice-box, .info-box, .faq-mini { padding: 1rem; }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ebeae6;
+            margin: 2.8rem 0 1.6rem 0;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #a8a29e;
+            text-align: center;
+            margin-top: 3.5rem;
+            border-top: 1px solid #e3e0db;
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <h1>华体会 · 简明知识库</h1>
+
+    <p style="font-size: 1.05rem; color: #44403c;">
+        一份围绕 <a href="https://go-portal-hth.com">华体会</a> 的轻量使用指南与访问提醒。 
+        如果你刚刚开始接触，或想快速了解要点，可以浏览下方的目录索引。
+    </p>
+
+    <!-- 目录感布局：卡片索引 -->
+    <div class="index-grid">
+        <div class="index-item">
+            <strong>入门指南</strong> —— 账号准备、基础设置与界面概览 <span class="tag">新用户</span>
+        </div>
+        <div class="index-item">
+            <strong>常用路径</strong> —— 活动、赛事、个人中心快速定位 <span class="tag">高频</span>
+        </div>
+        <div class="index-item">
+            <strong>安全提醒</strong> —— 密码、设备与网络环境注意事项 <span class="tag">必读</span>
+        </div>
+        <div class="index-item">
+            <strong>功能说明</strong> —— 重点模块释义与使用场景 <span class="tag">百科</span>
+        </div>
+    </div>
+
+    <!-- 说明区：基础概念 -->
+    <h2>说明区 · 基本概念</h2>
+    <p>
+        在开始使用前，建议先了解几个关键定义。<strong>华体会</strong> 作为一个综合服务平台，
+        整合了资讯、社区互动与休闲内容。所有操作均通过统一的账户体系完成，
+        你可以在个人后台管理偏好设置、消息通知以及隐私选项。
+    </p>
+    <p>
+        平台目前支持常规浏览器访问，移动端适配流畅。无论是查阅赛事预告、浏览图文，
+        还是参与社区讨论，界面逻辑保持清晰一致。如果遇到加载延迟，
+        可优先检查本地网络环境。
+    </p>
+
+    <!-- 提示区 -->
+    <div class="notice-box">
+        <strong style="display: block; margin-bottom: 0.2rem; color: #92400e;">📌 访问提醒</strong>
+        <p style="margin-bottom: 0;">
+            请始终通过官方域名 <a href="https://go-portal-hth.com">华体会</a> 进入，避免使用第三方镜像或非认证链接。
+            建议定期更新浏览器版本，并开启防钓鱼保护。如遇到页面异常、要求提供额外敏感信息，
+            请立即停止操作并联系平台支持。
+        </p>
+    </div>
+
+    <div class="info-box">
+        <strong style="display: block; margin-bottom: 0.2rem; color: #1c6b57;">ℹ️ 相关信息</strong>
+        <p style="margin-bottom: 0;">
+            平台不会通过主动私信的方式索要密码或验证码。所有官方公告均发布在「消息中心」栏目内。
+            你可以在设置中开启二次验证，进一步提升账户安全等级。
+            日常使用中，建议绑定常用邮箱作为备用联系方式。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 (部分) -->
+    <h2>常见疑问 · 摘要</h2>
+    <div class="faq-mini">
+        <details>
+            <summary>如何修改个人资料？</summary>
+            <p>登录后进入个人中心，选择「编辑资料」。头像、昵称、简介等均可自行调整。部分信息修改后需二次确认。</p>
+        </details>
+        <details>
+            <summary>忘记密码怎么办？</summary>
+            <p>在登录页点击「找回账户」，按提示输入绑定邮箱或手机号，系统会发送重置链接。如果无法自助找回，可联系客服人工处理。</p>
+        </details>
+        <details>
+            <summary>内容加载异常或报错？</summary>
+            <p>先尝试刷新页面或清理浏览器缓存。若仍无法正常显示，检查是否使用了过时的浏览器。建议使用 Chrome、Edge 或 Safari 的最新版本。</p>
+        </details>
+        <details>
+            <summary>是否支持多语言界面？</summary>
+            <p>目前主要界面语言为中文。部分功能模块可切换显示语言。未来可能会根据用户反馈扩展更多语言选项。</p>
+        </details>
+    </div>
+
+    <!-- 更具体的使用场景 -->
+    <h2>场景举例</h2>
+    <p>
+        <strong>日常浏览：</strong>通过 <a href="https://go-portal-hth.com">华体会</a> 首页可以快速找到今日推荐内容。
+        信息流按时间排列，也可以按分类筛选。收藏的文章会保存在个人书架中。
+    </p>
+    <p>
+        <strong>活动参与：</strong>部分限时活动需要提前在「活动中心」报名。报名成功后，系统会在开始前发送站内信提醒。
+        请注意活动细则中关于资格和时间的说明，避免错过重要时间节点。
+    </p>
+    <p>
+        <strong>消息通知：</strong>所有与账户相关的动态（如系统公告、回复提醒）都会归入通知列表。
+        你可以在设置中自定义哪些消息需要推送，以及推送方式（站内或邮件）。
+    </p>
+
+    <hr>
+
+    <div class="footer-note">
+        <p style="margin-bottom: 0.2rem;">本页面为知识库式介绍，内容仅供指引参考。</p>
+        <p style="margin-bottom: 0;">信息如有调整，以 <a href="https://go-portal-hth.com" style="border-bottom: 1px dashed #b45309;">华体会</a> 平台实际展示为准。</p>
+    </div>
+</div>
+</body>
+</html>
